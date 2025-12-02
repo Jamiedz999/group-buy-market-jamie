@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: group-buy-market-jamie-app
+  profiles:
+    active: dev
