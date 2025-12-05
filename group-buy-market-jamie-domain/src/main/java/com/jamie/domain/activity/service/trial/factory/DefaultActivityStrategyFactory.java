@@ -2,6 +2,8 @@ package com.jamie.domain.activity.service.trial.factory;
 
 import com.jamie.domain.activity.model.entity.MarketProductEntity;
 import com.jamie.domain.activity.model.entity.TrialBalanceEntity;
+import com.jamie.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.jamie.domain.activity.model.valobj.SkuVO;
 import com.jamie.domain.activity.service.trial.node.RootNode;
 import com.jamie.types.design.framwork.tree.StrategyHandler;
 import lombok.AllArgsConstructor;
@@ -9,6 +11,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 /**
  * @description:
@@ -35,6 +39,12 @@ public class DefaultActivityStrategyFactory {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class DynamicContext {
+
+        private GroupBuyActivityDiscountVO groupBuyActivityDiscountVO;
+
+        private SkuVO skuVO;
+
+        private BigDecimal deductionPrice;
 
     }
 }

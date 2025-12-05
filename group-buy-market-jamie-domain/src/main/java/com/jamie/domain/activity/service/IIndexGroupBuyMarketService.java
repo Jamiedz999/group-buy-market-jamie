@@ -9,5 +9,5 @@ import com.jamie.domain.activity.model.entity.TrialBalanceEntity;
  * @date: 03/12/2025 10:29
  */
 public interface IIndexGroupBuyMarketService {
-    TrialBalanceEntity indexMatketTrial(MarketProductEntity marketProductEntity) throws Exception;
+    TrialBalanceEntity indexMarketTrial(MarketProductEntity marketProductEntity) throws Exception;
 }

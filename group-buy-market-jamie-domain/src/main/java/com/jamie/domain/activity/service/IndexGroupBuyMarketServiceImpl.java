@@ -16,13 +16,13 @@ import javax.annotation.Resource;
  */
 
 @Service
-public class IndexGroupBuyMarketService implements IIndexGroupBuyMarketService{
+public class IndexGroupBuyMarketServiceImpl implements IIndexGroupBuyMarketService{
 
     @Resource
     private DefaultActivityStrategyFactory defaultActivityStrategyFactory;
 
     @Override
-    public TrialBalanceEntity indexMatketTrial(MarketProductEntity marketProductEntity) throws Exception {
+    public TrialBalanceEntity indexMarketTrial(MarketProductEntity marketProductEntity) throws Exception {
 
 
         StrategyHandler<MarketProductEntity, DefaultActivityStrategyFactory.DynamicContext, TrialBalanceEntity> strategyHandler = defaultActivityStrategyFactory.strategyHandler();
