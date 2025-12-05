@@ -23,7 +23,13 @@
             <groupId>com.jamie</groupId>
             <artifactId>group-buy-market-jamie-domain</artifactId>
         </dependency>
+        <dependency>
+
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
+
 
     <build>
         <finalName>group-buy-market-jamie-infrastructure</finalName>
