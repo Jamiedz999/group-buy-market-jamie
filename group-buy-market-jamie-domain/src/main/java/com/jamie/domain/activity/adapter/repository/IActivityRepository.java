@@ -1,6 +1,7 @@
 package com.jamie.domain.activity.adapter.repository;
 
 import com.jamie.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
+import com.jamie.domain.activity.model.valobj.SCSkuActivityVO;
 import com.jamie.domain.activity.model.valobj.SkuVO;
 
 /**
@@ -10,9 +11,10 @@ import com.jamie.domain.activity.model.valobj.SkuVO;
  */
 public interface IActivityRepository {
 
-    GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(String source, String channel);
+    GroupBuyActivityDiscountVO queryGroupBuyActivityDiscountVO(Long activityId);
 
     SkuVO querySkuBugoodsId(String goodsId);
 
 
+    SCSkuActivityVO querySCSkuActivityBySCGoodsId(String source, String channel, String goodsId);
 }
