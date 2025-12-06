@@ -46,5 +46,9 @@ public class DefaultActivityStrategyFactory {
 
         private BigDecimal deductionPrice;
 
+        private boolean visible;
+
+        private boolean enable;
+
     }
 }

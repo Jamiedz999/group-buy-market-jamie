@@ -34,7 +34,7 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
     private ThreadPoolExecutor threadPoolExecutor;
 
     @Resource
-    private  EndNode endNode;
+    private  TagNode tagNode;
 
     @Resource
     private Map<String, IDiscountCalculateService> discountCalculateServiceMap;
@@ -102,6 +102,6 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
             return errorNode;
         }
 
-        return endNode;
+        return tagNode;
     }
 }
