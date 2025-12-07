@@ -5,6 +5,8 @@ import com.jamie.domain.activity.model.entity.TrialBalanceEntity;
 import com.jamie.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import com.jamie.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
 import com.jamie.types.design.framwork.tree.StrategyHandler;
+import com.jamie.types.enums.ResponseCode;
+import com.jamie.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,17 @@ public class SwitchNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 
     @Override
     public TrialBalanceEntity doApply(MarketProductEntity requestParameter, DefaultActivityStrategyFactory.DynamicContext dynamicContext) throws Exception {
+
+
+        String userId = requestParameter.getUserId();
+        if(repository.downgradeSwitch()) {
+            throw new AppException(ResponseCode.E0003.getCode(), ResponseCode.E0003.getInfo());
+        }
+
+        if (!repository.cutRange(userId)){
+            throw new AppException(ResponseCode.E0004.getCode(), ResponseCode.E0004.getInfo());
+        }
+
         return router(requestParameter,dynamicContext);
      }
 
