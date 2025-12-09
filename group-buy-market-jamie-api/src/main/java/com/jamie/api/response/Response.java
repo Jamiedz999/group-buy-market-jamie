@@ -9,8 +9,9 @@ import java.io.Serializable;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+
 public class Response<T> implements Serializable {
 
     private static final long serialVersionUID = 7000723935764546321L;

@@ -1,5 +1,6 @@
 package com.jamie.domain.activity.model.entity;
 
+import com.jamie.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,4 +29,5 @@ public class TrialBalanceEntity{
     private Date endTime;
     private Boolean isVisible;
     private Boolean isEnable;
+    private GroupBuyActivityDiscountVO groupBuyActivityDiscountVO;
 }
