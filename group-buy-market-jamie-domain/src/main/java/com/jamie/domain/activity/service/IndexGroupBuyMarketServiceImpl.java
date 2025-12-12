@@ -4,7 +4,7 @@ package com.jamie.domain.activity.service;
 import com.jamie.domain.activity.model.entity.MarketProductEntity;
 import com.jamie.domain.activity.model.entity.TrialBalanceEntity;
 import com.jamie.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
-import com.jamie.types.design.framwork.tree.StrategyHandler;
+import com.jamie.types.design.framework.tree.StrategyHandler;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

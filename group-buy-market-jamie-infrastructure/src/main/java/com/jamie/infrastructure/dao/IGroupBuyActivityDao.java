@@ -19,4 +19,5 @@ public interface IGroupBuyActivityDao {
 
     GroupBuyActivity queryValidGroupBuyActivityId(Long activityId);
 
+    GroupBuyActivity queryOrderCountByActivityId(Long activityId);
 }

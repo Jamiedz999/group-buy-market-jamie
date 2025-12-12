@@ -5,7 +5,7 @@ import com.jamie.domain.activity.model.entity.TrialBalanceEntity;
 import com.jamie.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import com.jamie.domain.activity.model.valobj.SkuVO;
 import com.jamie.domain.activity.service.trial.node.RootNode;
-import com.jamie.types.design.framwork.tree.StrategyHandler;
+import com.jamie.types.design.framework.tree.StrategyHandler;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,6 +45,8 @@ public class DefaultActivityStrategyFactory {
         private SkuVO skuVO;
 
         private BigDecimal deductionPrice;
+
+        private BigDecimal payPrice;
 
         private boolean visible;
 

@@ -10,7 +10,7 @@ import com.jamie.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import com.jamie.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
 import com.jamie.domain.activity.service.trial.thread.QueryGroupBuyActivityDiscountVOThreadTask;
 import com.jamie.domain.activity.service.trial.thread.QuerySkuVOFromDBThreadTask;
-import com.jamie.types.design.framwork.tree.StrategyHandler;
+import com.jamie.types.design.framework.tree.StrategyHandler;
 import com.jamie.types.enums.ResponseCode;
 import com.jamie.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;
@@ -86,9 +86,9 @@ public class MarketNode extends AbstractGroupBuyMarketSupport<MarketProductEntit
 
         }
 
-        BigDecimal deductionPrice = discountCalculateService.calculate(requestParameter.getUserId(), skuVO.getOriginalPrice(), groupBuyDiscount);
-
-        dynamicContext.setDeductionPrice(deductionPrice);
+        BigDecimal payPrice = discountCalculateService.calculate(requestParameter.getUserId(), skuVO.getOriginalPrice(), groupBuyDiscount);
+        dynamicContext.setDeductionPrice(skuVO.getOriginalPrice().subtract(payPrice));
+        dynamicContext.setPayPrice(payPrice);
 
         return router(requestParameter, dynamicContext);
     }

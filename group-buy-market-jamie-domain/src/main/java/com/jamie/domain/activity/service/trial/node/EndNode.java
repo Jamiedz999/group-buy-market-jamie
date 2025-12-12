@@ -6,14 +6,10 @@ import com.jamie.domain.activity.model.valobj.GroupBuyActivityDiscountVO;
 import com.jamie.domain.activity.model.valobj.SkuVO;
 import com.jamie.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import com.jamie.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
-import com.jamie.types.design.framwork.tree.StrategyHandler;
-import com.jamie.types.enums.ResponseCode;
-import com.jamie.types.exception.AppException;
+import com.jamie.types.design.framework.tree.StrategyHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 /**
@@ -34,13 +30,14 @@ public class EndNode extends AbstractGroupBuyMarketSupport<MarketProductEntity, 
         SkuVO skuVO = dynamicContext.getSkuVO();
 
         BigDecimal deductionPrice = dynamicContext.getDeductionPrice();
-
+        BigDecimal payPrice = dynamicContext.getPayPrice();
         // 返回空结果
         return TrialBalanceEntity.builder()
                 .goodsId(skuVO.getGoodsId())
                 .goodsName(skuVO.getGoodsName())
                 .originalPrice(skuVO.getOriginalPrice())
                 .deductionPrice(deductionPrice)
+                .payPrice(payPrice)
                 .targetCount(groupBuyActivityDiscountVO.getTarget())
                 .startTime(groupBuyActivityDiscountVO.getStartTime())
                 .endTime(groupBuyActivityDiscountVO.getEndTime())

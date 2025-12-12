@@ -2,16 +2,17 @@ package com.jamie.infrastructure.adapter.repository;
 
 import com.jamie.domain.trade.adapter.repository.ITradeRepository;
 import com.jamie.domain.trade.model.aggregate.GroupBuyOrderAggregate;
-import com.jamie.domain.trade.model.entity.MarketPayOrderEntity;
-import com.jamie.domain.trade.model.entity.PayActivityEntity;
-import com.jamie.domain.trade.model.entity.PayDiscountEntity;
-import com.jamie.domain.trade.model.entity.UserEntity;
+import com.jamie.domain.trade.model.entity.*;
 import com.jamie.domain.trade.model.valobj.GroupBuyProgressVO;
 import com.jamie.domain.trade.model.valobj.TradeOrderStatusEnumVO;
+import com.jamie.infrastructure.dao.IGroupBuyActivityDao;
 import com.jamie.infrastructure.dao.IGroupBuyOrderDao;
 import com.jamie.infrastructure.dao.IGroupBuyOrderListDao;
+import com.jamie.infrastructure.dao.po.GroupBuyActivity;
 import com.jamie.infrastructure.dao.po.GroupBuyOrder;
 import com.jamie.infrastructure.dao.po.GroupBuyOrderList;
+import com.jamie.types.common.Constants;
+import com.jamie.types.enums.ActivityStatusEnumVO;
 import com.jamie.types.enums.ResponseCode;
 import com.jamie.types.exception.AppException;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -35,6 +36,11 @@ public class TradeRepository implements ITradeRepository {
     private IGroupBuyOrderDao groupBuyOrderDao;
     @Resource
     private IGroupBuyOrderListDao groupBuyOrderListDao;
+
+    @Resource
+    private IGroupBuyActivityDao groupBuyActivityDao;
+
+
 
     @Override
     public MarketPayOrderEntity queryNoPayMarketPayOrderByOutTradeNo(String userId, String outTradeNo) {
@@ -76,8 +82,9 @@ public class TradeRepository implements ITradeRepository {
 
         UserEntity userEntity = groupBuyOrderAggregate.getUserEntity();
         PayActivityEntity payActivityEntity = groupBuyOrderAggregate.getPayActivityEntity();
-
         PayDiscountEntity payDiscountEntity = groupBuyOrderAggregate.getPayDiscountEntity();
+        Integer userTakeOrderCount = groupBuyOrderAggregate.getUserTakeOrderCount();
+
 
         String teamId = payActivityEntity.getTeamId();
 
@@ -91,7 +98,7 @@ public class TradeRepository implements ITradeRepository {
                     .channel(payDiscountEntity.getChannel())
                     .originalPrice(payDiscountEntity.getOriginalPrice())
                     .deductionPrice(payDiscountEntity.getDeductionPrice())
-                    .payPrice(payDiscountEntity.getOriginalPrice().subtract(payDiscountEntity.getDeductionPrice()))
+                    .payPrice(payDiscountEntity.getPayPrice())
                     .targetCount(payActivityEntity.getTargetCount())
                     .completeCount(0)
                     .lockCount(1)
@@ -121,6 +128,7 @@ public class TradeRepository implements ITradeRepository {
                 .deductionPrice(payDiscountEntity.getDeductionPrice())
                 .status(TradeOrderStatusEnumVO.CREATE.getCode())
                 .outTradeNo(payDiscountEntity.getOutTradeNo())
+                .bizId(payActivityEntity.getActivityId() + Constants.UNDERLINE + userEntity.getUserId()+Constants.UNDERLINE + (userTakeOrderCount+1))
                 .build();
 
         try{
@@ -135,5 +143,38 @@ public class TradeRepository implements ITradeRepository {
                 .deductionPrice(payDiscountEntity.getDeductionPrice())
                 .tradeOrderStatusEnumVO(TradeOrderStatusEnumVO.CREATE)
                 .build();
+    }
+
+    @Override
+    public Integer queryOrderCountByActivityId(Long activityId, String userId) {
+
+        GroupBuyOrderList groupBuyOrderListReq = new GroupBuyOrderList();
+        groupBuyOrderListReq.setActivityId(activityId);
+        groupBuyOrderListReq.setUserId(userId);
+
+        return groupBuyOrderListDao.queryOrderCountByActivityId(groupBuyOrderListReq);
+
+
+    }
+
+    @Override
+    public GroupBuyActivityEntity queryGroupBuyActivityByActivityId(Long activityId) {
+        GroupBuyActivity groupBuyActivity = groupBuyActivityDao.queryOrderCountByActivityId(activityId);
+
+        return GroupBuyActivityEntity.builder()
+                .activityId(groupBuyActivity.getActivityId())
+                .activityName(groupBuyActivity.getActivityName())
+                .discountId(groupBuyActivity.getDiscountId())
+                .groupType(groupBuyActivity.getGroupType())
+                .takeLimitCount(groupBuyActivity.getTakeLimitCount())
+                .target(groupBuyActivity.getTarget())
+                .validTime(groupBuyActivity.getValidTime())
+                .status(ActivityStatusEnumVO.valueOf(groupBuyActivity.getStatus()))
+                .startTime(groupBuyActivity.getStartTime())
+                .endTime(groupBuyActivity.getEndTime())
+                .tagId(groupBuyActivity.getTagId())
+                .tagScope(groupBuyActivity.getTagScope())
+                .build();
+
     }
 }

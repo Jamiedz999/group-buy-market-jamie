@@ -26,4 +26,6 @@ public class GroupBuyOrderAggregate {
 
     private PayDiscountEntity payDiscountEntity;
 
+    private Integer userTakeOrderCount;
+
 }

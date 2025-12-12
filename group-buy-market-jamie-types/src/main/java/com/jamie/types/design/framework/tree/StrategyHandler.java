@@ -1,4 +1,4 @@
-package com.jamie.types.design.framwork.tree;
+package com.jamie.types.design.framework.tree;
 
 /**
  * @description:StrategyHandler

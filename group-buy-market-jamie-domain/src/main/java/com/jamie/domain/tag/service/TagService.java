@@ -31,6 +31,11 @@ public class TagService implements ITagService{
         List<String> userIdList = new ArrayList<String>(){{
             add("xiaofuge");
             add("jamie");
+            add("jamie01");
+            add("jamie02");
+            add("jamie03");
+            add("jamie04");
+
         }};
 
         for (String userId : userIdList) {

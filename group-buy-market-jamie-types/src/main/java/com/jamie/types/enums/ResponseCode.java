@@ -20,7 +20,14 @@ public enum ResponseCode {
     E0003("E0003","拼团活动降级拦截"),
     E0004("E0004","拼团活动切量拦截"),
     E0005("E0005","拼团活动failed, updated 0"),
-    E0006("E0006","拼团活动success, lock count accomplished")
+    E0006("E0006","拼团活动success, lock count accomplished"),
+    E0007("E0007","人数限定不可参与"),
+
+
+    E0101("E0101","拼团活动not available yet"),
+    E0102("E0102","not in valid time"),
+    E0103("E0103","current user reached the limit of joining in this group buy activity"),
+
 
 
             ;

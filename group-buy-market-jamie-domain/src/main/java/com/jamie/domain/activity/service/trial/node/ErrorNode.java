@@ -5,7 +5,7 @@ import com.jamie.domain.activity.model.entity.MarketProductEntity;
 import com.jamie.domain.activity.model.entity.TrialBalanceEntity;
 import com.jamie.domain.activity.service.trial.AbstractGroupBuyMarketSupport;
 import com.jamie.domain.activity.service.trial.factory.DefaultActivityStrategyFactory;
-import com.jamie.types.design.framwork.tree.StrategyHandler;
+import com.jamie.types.design.framework.tree.StrategyHandler;
 import com.jamie.types.enums.ResponseCode;
 import com.jamie.types.exception.AppException;
 import lombok.extern.slf4j.Slf4j;

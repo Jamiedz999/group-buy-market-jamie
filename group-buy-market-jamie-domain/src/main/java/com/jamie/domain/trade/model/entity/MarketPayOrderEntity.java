@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class MarketPayOrderEntity {
 
-    private  String orderId;
+    private String orderId;
 
     private BigDecimal deductionPrice;
 
